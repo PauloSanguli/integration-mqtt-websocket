@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+<script>
+////ws://192.168.194.139:1317/ws
+    let doTask = true
+
+    if(doTask){
+
+        const socket = new WebSocket("ws://localhost:8070/ws");
+        
+        socket.addEventListener("open", function (event) {
+            console.log("WebSocket connection established.");
+            socket.send("connected");
+            console.log(event);
+        });
+        
+        // 192.168.194.206
+        
+        socket.addEventListener("message", function (event) {
+            console.log(event.data);
+            /*console.log(event.data);
+            console.log("Message from server:", event.data);
+            document.getElementById("messages").innerHTML += <p>${event.data}</p>; */
+            
+            /*console.log(event);
+            const eventData = event.data.split(":");
+            const eventName = eventData[0];
+            const eventDataContent = eventData[1];
+            if (eventName === "auth-request") {
+                console.log("Received auth request:", eventDataContent);
+        }*/
+        });
+        doTask = false
+    }
+    
+    // Exemplo de envio de uma notificação para o servidor
+    /* document
+    .getElementById("sendNotification")
+    .addEventListener("click", function () {
+        const notification = "notification: Hello, server!";
+        socket.send(notification);
+        console.log("Notification sent to server:", notification);
+    }); */
+</script>
+</body>
+</html>
+<script>
